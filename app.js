@@ -9,6 +9,7 @@ const defaultData = {
 let data = loadData();
 let authMode = "login";
 let currentFilter = "all";
+let searchTerm = "";
 
 const authView = document.querySelector("#authView");
 const dashboardView = document.querySelector("#dashboardView");
@@ -26,6 +27,7 @@ const customerInput = document.querySelector("#customerInput");
 const taskInput = document.querySelector("#taskInput");
 const priorityInput = document.querySelector("#priorityInput");
 const recordList = document.querySelector("#recordList");
+const searchInput = document.querySelector("#searchInput");
 const totalCount = document.querySelector("#totalCount");
 const openCount = document.querySelector("#openCount");
 const doneCount = document.querySelector("#doneCount");
@@ -35,6 +37,10 @@ authForm.addEventListener("submit", handleAuth);
 toggleAuth.addEventListener("click", switchAuthMode);
 logoutButton.addEventListener("click", logout);
 taskForm.addEventListener("submit", addRecord);
+searchInput.addEventListener("input", () => {
+  searchTerm = searchInput.value.trim().toLowerCase();
+  renderDashboard();
+});
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -196,12 +202,19 @@ function renderDashboard() {
   activeUser.textContent = data.activeUser;
 
   const userRecords = data.records.filter((record) => record.owner === data.activeUser);
-  const visibleRecords = userRecords.filter((record) => {
+  const statusRecords = userRecords.filter((record) => {
     if (currentFilter === "all") {
       return true;
     }
 
     return record.status === currentFilter;
+  });
+  const visibleRecords = statusRecords.filter((record) => {
+    if (!searchTerm) {
+      return true;
+    }
+
+    return `${record.customer} ${record.task}`.toLowerCase().includes(searchTerm);
   });
 
   totalCount.textContent = userRecords.length;
@@ -213,7 +226,7 @@ function renderDashboard() {
   });
 
   if (visibleRecords.length === 0) {
-    recordList.innerHTML = `<div class="empty-state">Henüz gösterilecek kayıt yok.</div>`;
+    recordList.innerHTML = `<div class="empty-state">${getEmptyMessage(userRecords.length)}</div>`;
     return;
   }
 
@@ -226,6 +239,18 @@ function renderDashboard() {
   recordList.querySelectorAll("[data-action='delete']").forEach((button) => {
     button.addEventListener("click", () => deleteRecord(button.dataset.id));
   });
+}
+
+function getEmptyMessage(totalRecords) {
+  if (totalRecords === 0) {
+    return "Henüz gösterilecek kayıt yok.";
+  }
+
+  if (searchTerm) {
+    return "Aramana uyan kayıt bulunamadı.";
+  }
+
+  return "Bu filtrede gösterilecek kayıt yok.";
 }
 
 function createRecordHtml(record) {
