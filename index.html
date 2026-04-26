@@ -92,10 +92,16 @@
           <section class="records-panel">
             <div class="panel-toolbar">
               <h2>Kayıtlar</h2>
-              <div class="filters" aria-label="Filtreler">
-                <button class="filter-button active" type="button" data-filter="all">Tümü</button>
-                <button class="filter-button" type="button" data-filter="open">Bekleyen</button>
-                <button class="filter-button" type="button" data-filter="done">Tamamlanan</button>
+              <div class="list-controls">
+                <label class="search-field">
+                  Kayıt ara
+                  <input id="searchInput" type="search" placeholder="Müşteri veya iş ara" />
+                </label>
+                <div class="filters" aria-label="Filtreler">
+                  <button class="filter-button active" type="button" data-filter="all">Tümü</button>
+                  <button class="filter-button" type="button" data-filter="open">Bekleyen</button>
+                  <button class="filter-button" type="button" data-filter="done">Tamamlanan</button>
+                </div>
               </div>
             </div>
             <div class="record-list" id="recordList"></div>
