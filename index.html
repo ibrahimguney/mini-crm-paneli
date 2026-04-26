@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini CRM Paneli</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="auth-view" id="authView">
+        <div class="brand-block">
+          <p class="eyebrow">Mini Proje</p>
+          <h1>Mini CRM Paneli</h1>
+          <p class="lead">
+            Kayıt ol, giriş yap, müşteri görevlerini ekle ve durumlarını takip et.
+          </p>
+        </div>
+
+        <form class="auth-card" id="authForm">
+          <div class="form-header">
+            <h2 id="authTitle">Giriş yap</h2>
+            <button class="link-button" type="button" id="toggleAuth">
+              Kayıt ol
+            </button>
+          </div>
+
+          <label>
+            Kullanıcı adı
+            <input id="usernameInput" name="username" type="text" autocomplete="username" required />
+          </label>
+
+          <label>
+            Şifre
+            <input id="passwordInput" name="password" type="password" autocomplete="current-password" required />
+          </label>
+
+          <p class="message" id="authMessage" role="status"></p>
+          <button class="primary-button" type="submit" id="authSubmit">Giriş yap</button>
+        </form>
+      </section>
+
+      <section class="dashboard-view hidden" id="dashboardView">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Panel</p>
+            <h1>Müşteri Takibi</h1>
+          </div>
+          <div class="user-actions">
+            <span id="activeUser"></span>
+            <button class="ghost-button" type="button" id="logoutButton">Çıkış</button>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Özet">
+          <article>
+            <span>Toplam</span>
+            <strong id="totalCount">0</strong>
+          </article>
+          <article>
+            <span>Bekleyen</span>
+            <strong id="openCount">0</strong>
+          </article>
+          <article>
+            <span>Tamamlanan</span>
+            <strong id="doneCount">0</strong>
+          </article>
+        </section>
+
+        <section class="workbench">
+          <form class="task-form" id="taskForm">
+            <h2>Yeni kayıt</h2>
+            <label>
+              Müşteri adı
+              <input id="customerInput" type="text" required />
+            </label>
+            <label>
+              Yapılacak iş
+              <input id="taskInput" type="text" required />
+            </label>
+            <label>
+              Öncelik
+              <select id="priorityInput">
+                <option value="Normal">Normal</option>
+                <option value="Yüksek">Yüksek</option>
+                <option value="Düşük">Düşük</option>
+              </select>
+            </label>
+            <button class="primary-button" type="submit">Ekle</button>
+          </form>
+
+          <section class="records-panel">
+            <div class="panel-toolbar">
+              <h2>Kayıtlar</h2>
+              <div class="filters" aria-label="Filtreler">
+                <button class="filter-button active" type="button" data-filter="all">Tümü</button>
+                <button class="filter-button" type="button" data-filter="open">Bekleyen</button>
+                <button class="filter-button" type="button" data-filter="done">Tamamlanan</button>
+              </div>
+            </div>
+            <div class="record-list" id="recordList"></div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
