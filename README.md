@@ -1,31 +1,38 @@
 # Mini CRM Paneli
 
-Bu proje, gerçek uygulama mantığını küçük ve anlaşılır bir örnekle öğrenmek için hazırlandı.
+Tarayici icinde calisan, demo modu olan profesyonel mini CRM uygulamasi.
 
-## Neler Var?
+## Canli Demo
 
-- Kayıt olma
-- Giriş yapma
-- Kullanıcıya özel müşteri/görev kayıtları
-- Kayıt ekleme, silme, tamamlandı yapma
-- Duruma göre filtreleme
-- Tarayıcıda veri kaydetme (`localStorage`)
+```text
+https://ibrahimguney.github.io/mini-crm-paneli/
+```
 
-## Nasıl Çalıştırılır?
+## Ozellikler
 
-`index.html` dosyasını tarayıcıda açman yeterli.
+- Hesap acmadan incelenebilen demo calisma alani
+- Kullanici adi ve sifre ile lokal kayit/giris akisi
+- Musteri kaydi ekleme, silme ve tamamlama
+- E-posta, telefon, oncelik ve takip tarihi alanlari
+- Duruma ve yuksek oncelige gore filtreleme
+- Arama ve siralama
+- LocalStorage ile tarayicida veri saklama
+- GitHub Pages icin statik yayin yapisi
 
-## Öğrenilecek Konular
+## Teknolojiler
 
-1. HTML ile sayfa iskeleti kurma
-2. CSS ile düzen ve görünüm verme
-3. JavaScript ile form yönetimi
-4. Veriyi tarayıcıda saklama
-5. Listeleme, filtreleme ve silme işlemleri
+- HTML
+- CSS
+- Vanilla JavaScript
+- LocalStorage
+- GitHub Pages
 
-## Sonraki Geliştirme Fikirleri
+## Yerelde Calistirma
 
-- Arama kutusu eklemek
-- Kayıt düzenleme özelliği eklemek
-- Şifreleri açık metin yerine güvenli temsil etmek
-- Verileri gerçek bir backend API ile kaydetmek
+`index.html` dosyasini tarayicida acman yeterlidir.
+
+Alternatif olarak herhangi bir statik sunucu ile repo kok dizinini yayinlayabilirsin.
+
+## Not
+
+Bu proje portfoy ve egitim amaclidir. Sifreler localStorage icinde demo amacli tutulur; gercek urun ortaminda backend, hashleme ve oturum guvenligi kullanilmalidir.
